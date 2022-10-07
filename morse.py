@@ -83,20 +83,31 @@ def decode(morse_message: str) -> str:
 
     return "".join(decoded_letters)
 
-#pytests:
-@pytest.mark.parametrize("message,expected", 
-                         [("SOS", "... --- ..."),
-                          ("GOOD-DAY", "--. --- --- -.. -....- -.. .- -.--"),
-                          ("1", ".----")])
+
+# pytests:
+@pytest.mark.parametrize(
+    "message,expected",
+    [
+        ("SOS", "... --- ..."),
+        ("GOOD-DAY", "--. --- --- -.. -....- -.. .- -.--"),
+        ("1", ".----"),
+    ],
+)
 def test_encode(message: str, expected: str):
     assert encode(message) == expected
-    
-@pytest.mark.parametrize("message,expected", 
-                         [("... --- ...", "SOS"),
-                          ( "--. --- --- -.. -....- -.. .- -.--", "GOOD-DAY"),
-                          (".----", "1")])
+
+
+@pytest.mark.parametrize(
+    "message,expected",
+    [
+        ("... --- ...", "SOS"),
+        ("--. --- --- -.. -....- -.. .- -.--", "GOOD-DAY"),
+        (".----", "1"),
+    ],
+)
 def test_decode(message: str, expected: str):
     assert decode(message) == expected
-    
+
+
 if __name__ == "__main__":
     doctest.testmod()
